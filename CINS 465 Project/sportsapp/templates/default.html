@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}Pickup Sports App{% endblock %}
+{% block content %}
+
+<ul class="menu menu-hover-lines">
+  <li class="active"><a href="/">Home</a></li>
+  {% if user.is_authenticated %}
+  <li><a href="/logout/">Logout {{ user.username }}</a></li>
+  <li><a href="/admin/">Admin</a></li>
+  <li><a href="/event/">Create Event</a></li>
+  <li><a href="/team/">Create Team</a></li>
+  {% else %}
+  <li><a href="/login/">Login</a></li>
+  <li><a href="/register/">Register</a></li>
+  {% endif %}
+</ul>
+
+<h5>Pick-Up Sports</h5>
+
+<!-- <div id="chat-body" class="panel panel-default">
+  <div class="panel-heading">Chat Box</div>
+  <div id="msg-list-div" class="panel-body">
+    <ul id="msg-list" class="list-group">
+      {% for obj in chat %}
+        {% if obj.user == request.user %}
+          <li class="text-right list-group-item">{{ obj.message }}</li>
+        {% else %}
+          <li class="text-left list-group-item">{{ obj.message }}</li>
+        {% endif %}
+      {% empty %}
+        <li class="text-right list-group-item">No messages</li>
+      {% endfor %}
+      <script>
+        var chatlist = document.getElemenyById('msg-list-div');
+        chatlist.scrollTop = chatlist.scrollHeight;
+      </script>
+    </ul>
+  </div>
+</div>-->
+
+
+
+{% if user.is_authenticated %}
+<div class="grid-x grid-padding-x">
+<div class="large-4 medium-r small-12 large-offset-0 medium-offset-3 cell">
+
+<br>
+{{variable}}
+<br>
+<form>
+  <input type="text" value="search map">
+  <input type="submit" value="Search">
+</form>
+
+<iframe
+  width="450"
+  height="300"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBQnsVrnvpuWjXDokZBDkEO-uX-yyTsFUQ
+    &q=Chico+CA" allowfullscreen>
+</iframe>
+</div>
+</div>
+
+<div class="grid-x grid-padding-x">
+  <div class="large-4 medium-r small-12 large-offset-6 medium-offset-3 cell">
+
+<h4><u><i>Chat box under construction</i></u></h4>
+<form id="chat-form" method="post" action="/post/">
+  <div id="chat-bottom" class="input-group">
+    <input type="text" id="chat-msg" name="chat-msg" class="form-control"/>
+    <span class="input-group-btn">
+      <input class="btn btn-default" id="send" type="submit" value="Send"/>
+    </span>
+  </div>
+</form>
+</div>
+</div>
+
+{% endif %}
+
+
+
+
+
+{% endblock %}
