@@ -49,6 +49,7 @@ class SportsEvent(forms.Form):
     def save(self, request, commit=True):
         game = event()
         game.event=self.cleaned_data['event']
+        game.location=self.cleaned_data['location']
         if commit:
             game.save()
         return game

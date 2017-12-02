@@ -26,7 +26,7 @@ urlpatterns = [
         'authentication_form':LoginForm
     }, name="login"),
     url(r'logout/$', views.logout,{
-        'next_page':'/login'
+        'next_page':'/'
     }),
     url(r'',include('sportsapp.urls')),
 ]

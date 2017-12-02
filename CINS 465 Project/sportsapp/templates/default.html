@@ -44,9 +44,18 @@
 <div class="grid-x grid-padding-x">
 <div class="large-4 medium-r small-12 large-offset-0 medium-offset-3 cell">
 
+
 <br>
-{{variable}}
+<div id="app">
+  <ul>
+    {% for game in games %}
+      <li>
+        {{game.game}}
+      </li>
+    {% endfor %}
+  </ul>
 <br>
+</div>
 <form>
   <input type="text" value="search map">
   <input type="submit" value="Search">

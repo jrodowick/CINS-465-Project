@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 
-class new_event(models.Model):
+class event(models.Model):
     event=models.CharField(max_length=280)
     create_time=models.DateTimeField(auto_now=True)
 
