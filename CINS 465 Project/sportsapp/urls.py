@@ -6,5 +6,4 @@ urlpatterns = [
     url(r'register/$',views.register,name='register'),
     url(r'event/$',views.sport_event,name='event'),
     url(r'team/$', views.team, name='team'),
-
 ]
