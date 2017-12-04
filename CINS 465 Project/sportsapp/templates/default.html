@@ -45,28 +45,39 @@
 <div class="large-4 medium-r small-12 large-offset-0 medium-offset-3 cell">
 
 
-<br>
-<div id="app">
-  <ul>
-    {% for game in games %}
-      <li>
-        {{game.game}}
-      </li>
-    {% endfor %}
-  </ul>
-<br>
-</div>
+{% for x in games %}
+<table>
+  <tr>
+  <th> Event Name </th>
+  <th> Location </th>
+  <th> Event Date </th>
+  <th> Event Created On </th>
+</tr>
+  <td>{{x.event}}</td>
+  <td>{{x.location}}</td>
+  <td>{{x.date}}</td>
+  <td>{{x.create_time}}</td>
+</table>
+{% endfor %}
+
+
+<br><br><br><br><br>
 <form>
-  <input type="text" value="search map">
-  <input type="submit" value="Search">
+  <input type="text" id="map_search" value="search map">
+  <intut type="submit" id="map_button" value="Search">
 </form>
+<br>
+
+<script>
+ var location = getElementByID("map_search").value;
+</script>
 
 <iframe
   width="450"
   height="300"
   frameborder="0" style="border:0"
-  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBQnsVrnvpuWjXDokZBDkEO-uX-yyTsFUQ
-    &q=Chico+CA" allowfullscreen>
+  src="https://www.google.com/maps/embed/v1/search?key=AIzaSyBQnsVrnvpuWjXDokZBDkEO-uX-yyTsFUQ
+    &q=CSU+Chico+CA" allowfullscreen>
 </iframe>
 </div>
 </div>

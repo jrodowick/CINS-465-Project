@@ -4,6 +4,11 @@ from django.core.validators import validate_unicode_slug
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
+from django.forms.extras.widgets import SelectDateWidget
+from django.forms import ModelForm, Form
+
+import datetime
+
 from .models import *
 
 class LoginForm(AuthenticationForm):
@@ -45,11 +50,15 @@ class SportsEvent(forms.Form):
     location=forms.CharField(
         label="Location",
     )
+    date=forms.DateField(
+        widget = SelectDateWidget
+    )
 
     def save(self, request, commit=True):
         game = event()
         game.event=self.cleaned_data['event']
         game.location=self.cleaned_data['location']
+        game.date=self.cleaned_data['date']
         if commit:
             game.save()
         return game

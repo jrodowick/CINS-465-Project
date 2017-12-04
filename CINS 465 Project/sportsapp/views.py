@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
+from itertools import chain
 
 from .models import *
 from .forms import *
@@ -11,14 +12,7 @@ from .forms import *
 def index(request):
     form = SportsEvent()
     games = event.objects.all()
-    to_return = []
-    for game in games:
-        data = {}
-        data["event"]=game.event
-        data["create_time"]=game.create_time
-        to_return+=[data]
-    context = {"games":games, "form":form}
-    return render(request, "default.html", context)
+    return render(request, "default.html", {'games':games})
 
 def register(request):
     if request.method == 'POST':
@@ -38,6 +32,8 @@ def sport_event(request):
             if form.is_valid():
                 modentry = event(
                     event=form.cleaned_data['event'],
+                    location=form.cleaned_data['location'],
+                    date=form.cleaned_data['date']
                 )
                 modentry.save()
                 return redirect("/")
@@ -45,6 +41,7 @@ def sport_event(request):
             form=SportsEvent()
     else:
         form = SportsEvent()
+    games = event.objects.all()
     context = {"form":form}
     return render(request,"event.html",context)
 
