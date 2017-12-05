@@ -12,7 +12,8 @@ from .forms import *
 def index(request):
     form = SportsEvent()
     games = event.objects.all()
-    return render(request, "default.html", {'games':games})
+    teams = team.objects.all()
+    return render(request, "default.html", {'games':games,'teams':teams})
 
 def register(request):
     if request.method == 'POST':
@@ -45,13 +46,21 @@ def sport_event(request):
     context = {"form":form}
     return render(request,"event.html",context)
 
-def team(request):
+def sports_team(request):
     if request.method=='POST':
-        form = SportsEvent(request.POST)
-        if form.is_valid():
-            form.save(commit=True)
-            return redirect("/")
+        if request.user.is_authenticated:
+            form = BuildTeam(request.POST, request.FILES)
+            if form.is_valid():
+                modentry = team(
+                    name=form.cleaned_data['name'],
+                    captain=form.cleaned_data['captain']
+                )
+                modentry.save()
+                return redirect("/")
+        else:
+            form=BuildTeam()
     else:
-        form = SportsEvent()
+        form = BuildTeam()
+    teams = team.objects.all()
     context = {"form":form}
     return render(request,"team.html",context)

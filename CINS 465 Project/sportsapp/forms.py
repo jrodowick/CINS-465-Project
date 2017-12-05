@@ -62,3 +62,21 @@ class SportsEvent(forms.Form):
         if commit:
             game.save()
         return game
+
+class BuildTeam(forms.Form):
+    name=forms.CharField(
+        label="Team Name",
+        max_length=280
+    )
+    captain=forms.CharField(
+        label="Team Captain",
+        max_length="40"
+    )
+
+    def save(self, request, commit=True):
+        a_team = team()
+        a_team.name=self.cleaned_data['name']
+        a_team.captain=self.cleaned_data['captain']
+        if commit:
+            a_team.save()
+        return a_team

@@ -14,6 +14,13 @@ class event(models.Model):
     def __str__(self):
         return self.event
 
+class team(models.Model):
+    name=models.CharField(max_length=280)
+    captain=models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.name
+
 
 
 # class Chat(models.Model):
