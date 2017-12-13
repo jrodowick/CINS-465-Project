@@ -47,6 +47,7 @@ def sport_event(request):
     return render(request,"event.html",context)
 
 def sports_team(request):
+    teams = team.objects.all()
     if request.method=='POST':
         if request.user.is_authenticated:
             form = BuildTeam(request.POST, request.FILES)
@@ -62,7 +63,7 @@ def sports_team(request):
     else:
         form = BuildTeam()
     teams = team.objects.all()
-    context = {"form":form}
+    context = {"form":form,'teams':teams}
     return render(request,"team.html",context)
 
 def location_info(request):

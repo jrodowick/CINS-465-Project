@@ -4,15 +4,22 @@
 {% block content %}
 
 <div class="grid-x grid-padding-x">
-  <div class="large-6 medium-6 small-12 large-offset-3 medium-offset-3 cell">
+  <div class="large-4 medium-6 small-12 large-offset-1 medium-offset-3 cell">
 
     <form action="/event/" method="post" enctype="multipart/form-data">
       {% csrf_token %}
-      <h4 class="text-center">Create new event</h4>
+      <h4 class="text-center"><i>Create new event</i></h4>
       {{ form }}
 
       <input type="submit" class="button expanded" value="Create event" />
     </form>
+  </div>
+  <div class="large-4 medium-6 small-12 large-offset-1 cell">
+    <p>
+      <h3>Since the map GUI has not yet been implemented,
+      we have a link here to our common locations page.</h3>
+    <h2><a href="/location_info/"><b>Common Locations</b></a></h2>
+  </p>
   </div>
 </div>
 {% endblock %}

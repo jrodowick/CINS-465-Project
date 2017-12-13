@@ -1,0 +1,4 @@
+adium-theme-ubuntu==0.3.4
+Django==1.11.7
+pytz==2017.3
+unity-lens-photos==1.0

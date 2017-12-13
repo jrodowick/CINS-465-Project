@@ -4,14 +4,37 @@
 {% block content %}
 
 <div class="grid-x grid-padding-x">
-  <div class="large-6 medium-6 small-12 large-offset-3 medium-offset-3 cell">
+  <div class="large-4 medium-6 small-12 large-offset-2 medium-offset-3 cell">
 
+
+  </div>
+</div>
+
+
+<div class="grid-x grid-margin-x grid-padding-x">
+  <div class="small-4 padding-2 cell">
     <form action="/team/" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <h4 class="text-center">Create a team!</h4>
       {{ form }}
+
       <input type="submit" class="button expanded" value="Create Team" />
     </form>
   </div>
+
+  <div class="auto cell">
+    <br><br><br>
+    {% for x in teams %}
+    <table>
+      <tr>
+      <th> Team Name </th>
+      <th> Team Captain </th>
+    </tr>
+      <td>{{x.name}}</td>
+      <td>{{x.captain}}</td>
+    </table>
+    {% endfor %}
+  </div>
+  <div class="auto cell"></div>
 </div>
 {% endblock %}

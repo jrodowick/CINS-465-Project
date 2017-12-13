@@ -7,5 +7,5 @@ function get_location() {
 
 function confirm() {
 
-  window.alert("You are going to this event!")
+  alert("You are going to this event!")
 }
