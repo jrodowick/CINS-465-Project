@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block title %}Pickup Sports App{% endblock %}
+{% block content %}
+
+<ul  class="menu menu-hover-lines">
+  <li id="header" class="active"><a href="/"><b>Home</a></li></b>
+  {% if user.is_authenticated %}
+  <li id="header"><a href="/logout/"><b>Logout {{ user.username }}</a></li></b>
+  <li id="header"><a href="/admin/"><b>Admin</b></a></li>
+  <li id="header"><a href="/event/"><b>Create Event</b></a></li>
+  <li id="header"><a href="/team/"><b>Create Team</a></li></b>
+  <li id="header"><a href="/location_info/"><b>Common Locations</b></a></li>
+  <li id="header"><a href="/chat_room/"><b>Chat Room</b></a></li>
+  {% else %}
+  <li id="header"><a href="/login/">Login</a></li>
+  <li id="header"><a href="/register/">Register</a></li>
+</ul>
+<br><br>
+<h1>A webstite for pick-up sports in your area</h1>
+  <h3>Find games, Make your own, Meet some friends!</h3>
+<br><br>
+<iframe align="right" width="500" height="350" src="https://www.youtube.com/embed/DwhTYFwfACA" frameborder="0" allowfullscreen>
+</iframe>
+<table id="ruleTable" style="width:10%" align="right">
+  <tr>
+    <th>Sports & Rules</th>
+  </tr>
+  <tr>
+    <td><a href="http://www.kids-sports-activities.com/basic-baseball-rules.html" target="_blank" style="color:#cc0000">⚾️Baseball</a>
+</td>
+  </tr>
+  <tr>
+    <td><a href="https://www.breakthroughbasketball.com/basics/basics.html" target="_blank" style="color:#cc0000">🏀Basketball</a>
+</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.topendsports.com/sport/soccer/basics.htm" target="_blank" style="color:#cc0000">⚽️Soccer</a>
+</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.topendsports.com/sport/soccer/basics.htm" target="_blank" style="color:#cc0000">🏈Football</a>
+</td>
+  </tr>
+  <tr>
+    <td><a href="https://www.winnetkahockey.com/index.php/basic-rules-of-hockey" target="_blank" style="color:#cc0000">🏒Hockey</a>
+</td>
+</table>
+
+  {% endif %}
+
+{% if user.is_authenticated %}
+<div class="grid-x grid-margin-x grid-padding-x">
+  <div id="event" class="small-5 small-3 cell">
+    <h5><b>Pick-up games</h5></b>
+    {% for x in games %}
+    <table>
+      <tr>
+      <th> Event Name </th>
+      <th> Location </th>
+      <th> Event Date </th>
+      <th> Event Created On </th>
+      <th> Confirm attendance </th>
+    </tr>
+      <td><b>{{x.event}}</b></td>
+      <td><b>{{x.location}}</b></td>
+      <td><b>{{x.date}}</b></td>
+      <td><b>{{x.create_time}}</b></td>
+      <td> <form>
+            <input id="confirm" type="radio" onclick=confirm()>
+          </form>
+      </td>
+    </table>
+    {% endfor %}
+  </div>
+  <div class="auto cell">
+    {% for x in teams %}
+    <table>
+      <tr>
+      <th> Team Name </th>
+      <th> Team Captain </th>
+    </tr>
+      <td>{{x.name}}</td>
+      <td>{{x.captain}}</td>
+    </table>
+    {% endfor %}
+
+
+
+  </div>
+  <div class="auto cell">
+    <iframe
+      width="450"
+      height="300"
+      frameborder="0" style="border:0"
+      src="https://www.google.com/maps/embed/v1/search?key=AIzaSyBQnsVrnvpuWjXDokZBDkEO-uX-yyTsFUQ
+        &q=CSU+Chico+CA" allowfullscreen>
+    </iframe>
+  </div>
+</div>
+
+
+{% endif %}
+
+
+
+
+{% endblock %}
